@@ -3,8 +3,20 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
+
 @Module({
-  imports: [RestaurantsModule],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: `.env.${process.env.NODE_ENV}`,
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(
+      process.env.DB_URL_LOCAL || 'mongodb://localhost:27017/restaurants',
+    ),
+    RestaurantsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -32,4 +32,18 @@ export class RestaurantsService {
 
     return restaurant;
   }
+
+  // Update a restaurant by ID => PUT /restaurants/:id
+  async updateById(id: string, restaurant: Restaurant): Promise<Restaurant> {
+    const rest = await this.restaurantModel.findByIdAndUpdate(id, restaurant, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!rest) {
+      throw new NotFoundException('Restaurant not found.');
+    }
+
+    return rest;
+  }
 }

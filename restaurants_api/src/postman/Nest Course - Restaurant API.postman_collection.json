@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "16af9512-8110-489f-be48-138b16c28b8c",
+		"name": "Nest Course | Restaurant API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6097804",
+		"_collection_link": "https://solar-trinity-660527.postman.co/workspace/My-Workspace~6c54c99e-ebd1-4aa2-8b32-467b0bfbbf86/collection/6097804-16af9512-8110-489f-be48-138b16c28b8c?action=share&source=collection_link&creator=6097804"
+	},
+	"item": [
+		{
+			"name": "Restaurant",
+			"item": [
+				{
+					"name": "Get All Restaurants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DOMAIN}}/restaurants",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Restauran",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Restaurant 2\",\n    \"description\": \"This is just a description 2\",\n    \"email\": \"ghulam2@gmail.com\",\n    \"phoneNo\": \"223123123\",\n    \"category\": \"Fast Food 2\",\n    \"address\": \"220 Olympic Dr, Stafford, VS, 32554\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/restaurants",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Restaurant By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DOMAIN}}/restaurants/67e447bee37e141e20787ff3",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"restaurants",
+								"67e447bee37e141e20787ff3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Restaurant By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/restaurants/67e447bee37e141e20787ff2",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"restaurants",
+								"67e447bee37e141e20787ff2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Restaurant By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/restaurants/67e447bee37e141e20787ff3",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"restaurants",
+								"67e447bee37e141e20787ff3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Restaurants By Query Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DOMAIN}}/restaurants?keyword=2",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"restaurants"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

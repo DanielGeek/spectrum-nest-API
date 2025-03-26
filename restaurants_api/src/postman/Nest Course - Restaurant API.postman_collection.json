@@ -126,12 +126,12 @@
 					"response": []
 				},
 				{
-					"name": "Get All Restaurants By Query Name",
+					"name": "Get Restaurants By Name",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{DOMAIN}}/restaurants?keyword=2",
+							"raw": "{{DOMAIN}}/restaurants?page=2",
 							"host": [
 								"{{DOMAIN}}"
 							],
@@ -141,6 +141,11 @@
 							"query": [
 								{
 									"key": "keyword",
+									"value": "Restaurant",
+									"disabled": true
+								},
+								{
+									"key": "page",
 									"value": "2"
 								}
 							]

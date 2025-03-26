@@ -46,4 +46,15 @@ export class RestaurantsService {
 
     return rest;
   }
+
+  // Delete a restaurant by ID => DELETE /restaurants/:id
+  async deleteById(id: string): Promise<Restaurant> {
+    const restaurant = await this.restaurantModel.findByIdAndDelete(id);
+
+    if (!restaurant) {
+      throw new NotFoundException('Restaurant not found.');
+    }
+
+    return restaurant;
+  }
 }

@@ -46,6 +46,8 @@ export class RestaurantsController {
     @Body()
     restaurant: UpdateRestaurantDto,
   ): Promise<Restaurant> {
+    await this.restaurantsService.findById(id);
+
     return this.restaurantsService.updateById(id, restaurant);
   }
 
@@ -54,6 +56,8 @@ export class RestaurantsController {
     @Param('id')
     id: string,
   ): Promise<{ deleted: boolean }> {
+    await this.restaurantsService.findById(id);
+
     const restaurant = await this.restaurantsService.deleteById(id);
 
     if (restaurant) {

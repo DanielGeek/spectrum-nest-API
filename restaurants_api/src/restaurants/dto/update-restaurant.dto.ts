@@ -2,8 +2,8 @@ import {
   IsEmail,
   IsEnum,
   IsOptional,
-  IsPhoneNumber,
   IsString,
+  Matches,
 } from 'class-validator';
 import { Category } from '../schemas/restaurant.schema';
 
@@ -20,7 +20,10 @@ export class UpdateRestaurantDto {
   @IsOptional()
   readonly email: string;
 
-  @IsPhoneNumber('US')
+  // @IsPhoneNumber('VE')
+  @Matches(/^\+?(58|1)[0-9]{10}$/, {
+    message: 'Phone number must be from Venezuela (+58) or USA (+1)',
+  })
   @IsOptional()
   readonly phoneNo: string;
 

@@ -7,6 +7,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { Restaurant } from './schemas/restaurant.schema';
 import { Query } from 'express-serve-static-core';
+import APIFeatures from 'src/utils/apiFeatures.utils';
 
 @Injectable()
 export class RestaurantsService {
@@ -40,6 +41,11 @@ export class RestaurantsService {
 
   // Create new Restaurant => POST /restaurants
   async create(restaurant: Restaurant): Promise<Restaurant> {
+    const location = await APIFeatures.getRestaurantLocation(
+      restaurant.address,
+    );
+    console.log(location);
+
     const res = await this.restaurantModel.create(restaurant);
     return res;
   }

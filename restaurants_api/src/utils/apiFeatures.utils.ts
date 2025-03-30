@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { S3 } from 'aws-sdk';
 import * as nodeGeoCoder from 'node-geocoder';
 
 interface GeocodeResponse {
@@ -61,5 +62,39 @@ export default class APIFeatures {
       );
       return null;
     }
+  }
+
+  // Upload images
+  static async upload(files) {
+    return new Promise((resolve, reject) => {
+      const s3 = new S3({
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_KEY,
+      });
+
+      const images: S3.ManagedUpload.SendData[] = [];
+
+      files.forEach(async (file) => {
+        const splitFile = file.originalname.split('.');
+        const random = Date.now();
+
+        const fileName = `${splitFile[0]}_${random}.${splitFile[1]}`;
+
+        const params = {
+          Bucket: `${process.env.AWS_S3_BUCKET_NAME}/restaurants`,
+          Key: fileName,
+          Body: file.buffer,
+          ContentType: file.mimetype,
+        };
+
+        const uploadResponse = await s3.upload(params).promise();
+
+        images.push(uploadResponse);
+
+        if (images.length === files.length) {
+          resolve(images);
+        }
+      });
+    });
   }
 }

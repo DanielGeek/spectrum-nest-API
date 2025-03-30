@@ -94,4 +94,12 @@ export class RestaurantsService {
 
     return restaurant;
   }
+
+  // Upload Images => PUT /restaurants/upload/:id
+  async uploadImages(id, files) {
+    const images = await APIFeatures.upload(files);
+
+    console.log(images);
+    return images;
+  }
 }

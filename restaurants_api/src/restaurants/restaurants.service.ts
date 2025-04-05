@@ -112,4 +112,10 @@ export class RestaurantsService {
 
     return restaurant;
   }
+
+  async deleteImages(images: string[] | undefined) {
+    if (!images || images.length === 0) return true;
+    const res = await APIFeatures.deleteImages(images);
+    return res;
+  }
 }

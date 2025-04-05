@@ -62,7 +62,7 @@ export class RestaurantsController {
     const restaurant = await this.restaurantsService.findById(id);
 
     const isDeleted = await this.restaurantsService.deleteImages(
-      restaurant.images as string[] | undefined,
+      restaurant.images as { Key: string }[] | undefined,
     );
 
     if (isDeleted) {

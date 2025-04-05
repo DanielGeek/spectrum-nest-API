@@ -66,7 +66,7 @@ export default class APIFeatures {
 
   // Upload images
   static async upload(files) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       const s3 = new S3({
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.AWS_SECRET_KEY,
@@ -99,7 +99,7 @@ export default class APIFeatures {
   }
 
   // Delete images
-  static async deleteImages(images) {
+  static async deleteImages(images: { Key: string }[]) {
     const s3 = new S3({
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.AWS_SECRET_KEY,
@@ -120,10 +120,10 @@ export default class APIFeatures {
     };
 
     return new Promise((resolve, reject) => {
-      s3.deleteObjects(params, function (err, data) {
+      s3.deleteObjects(params, function (err, _data) {
         if (err) {
           console.log(err);
-          reject(false);
+          reject(new Error(`Failed to delete images: ${err.message}`));
         } else {
           resolve(true);
         }
